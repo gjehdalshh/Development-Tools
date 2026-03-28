@@ -1,11 +1,20 @@
 'use client';
 import { useState } from 'react';
+import AdFit from 'app/components/AdFit';
 
 export default function WordCounter() {
   const [text, setText] = useState('');
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
+      {/* 🚀 상단 광고 배치 (제목 위) */}
+      <div className="mb-8 flex justify-center border-b pb-4">
+        <div className="text-center">
+          <p className="text-[10px] text-slate-400 mb-1 uppercase tracking-widest">Advertisement</p>
+          <AdFit />
+        </div>
+      </div>
+      
       <div className="flex flex-col lg:flex-row gap-8">
         {/* 입력 및 기능부 */}
         <div className="flex-1">

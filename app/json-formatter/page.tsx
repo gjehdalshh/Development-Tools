@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import AdFit from 'app/components/AdFit';
 
 export default function JsonFormatter() {
   const [input, setInput] = useState('');
@@ -11,6 +12,14 @@ export default function JsonFormatter() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
+      {/* 🚀 상단 광고 배치 (제목 위) */}
+      <div className="mb-8 flex justify-center border-b pb-4">
+        <div className="text-center">
+          <p className="text-[10px] text-slate-400 mb-1 uppercase tracking-widest">Advertisement</p>
+          <AdFit />
+        </div>
+      </div>
+      
       <header className="mb-10">
         <h2 className="text-2xl font-bold text-slate-900 tracking-tight uppercase tracking-tighter">JSON Formatter</h2>
         <p className="text-sm text-slate-400 font-medium mt-1">Beautify and Validate JSON structures</p>
