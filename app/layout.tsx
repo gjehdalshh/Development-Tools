@@ -7,9 +7,11 @@ export const metadata: Metadata = {
   title: "Dev Toolbox",
   description: "개발자를 위한 유용한 도구 모음",
   verification: {
-    // 여기에 복사한 코드의 content 부분만 넣으세요
-    google: "구글코드", 
+    // 1. 구글 코드는 여기에 '값'만 넣습니다. (기존 "구글코드" 대신 입력)
+    google: "OCy2QTxrzg754h6QbziQu5iZT9t6hXmHU9o_mVzeDTo", 
+    
     other: {
+      // 2. 네이버 코드는 지금처럼 유지하시면 됩니다.
       "naver-site-verification": "b5730e361190fb13b33f46e4dedb848516feb1c7",
     },
   },
