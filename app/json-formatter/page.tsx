@@ -6,37 +6,34 @@ export default function JsonFormatter() {
   const [result, setResult] = useState('');
 
   const format = () => {
-    try {
-      setResult(JSON.stringify(JSON.parse(input), null, 2));
-    } catch {
-      alert('올바른 JSON 형식이 아닙니다.');
-    }
+    try { setResult(JSON.stringify(JSON.parse(input), null, 2)); } catch { alert('Invalid JSON Syntax.'); }
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6">
-      <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 md:p-12">
-        <h2 className="text-3xl font-black text-gray-950 tracking-tighter mb-8">📦 JSON 포맷터</h2>
-        
-        <textarea
-          className="w-full h-56 p-6 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-emerald-100 focus:border-emerald-400 outline-none font-mono text-sm mb-6 transition-all"
-          placeholder='{"key": "value", "array": [1, 2, 3]}'
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        
-        <button onClick={format} className="w-full bg-emerald-600 text-white py-4 rounded-2xl font-black hover:bg-emerald-700 transition shadow-lg shadow-emerald-100 mb-10">JSON 정렬하기 (Beautify)</button>
+    <div className="max-w-4xl mx-auto px-4 py-12">
+      <header className="mb-10">
+        <h2 className="text-2xl font-bold text-slate-900 tracking-tight uppercase tracking-tighter">JSON Formatter</h2>
+        <p className="text-sm text-slate-400 font-medium mt-1">Beautify and Validate JSON structures</p>
+      </header>
 
-        {result && (
-          <div className="mb-12">
-            <pre className="p-8 bg-gray-950 text-emerald-400 rounded-3xl overflow-x-auto text-sm font-mono leading-relaxed border border-gray-800">
-              {result}
-            </pre>
-          </div>
-        )}
+      <textarea
+        className="w-full h-56 p-5 border border-slate-300 rounded focus:border-slate-900 outline-none font-mono text-sm bg-slate-50/30 mb-4"
+        placeholder='{"key": "value", "array": [1, 2, 3]}'
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      
+      <button onClick={format} className="w-full bg-slate-900 text-white py-3.5 font-bold text-xs uppercase tracking-widest hover:bg-slate-800 transition rounded mb-8">Format JSON</button>
 
-        <article className="pt-10 border-t border-gray-100 text-gray-600 leading-relaxed text-sm">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">온라인 JSON 포맷터가 필요한 순간</h3>
+      {result && (
+        <pre className="p-6 bg-slate-50 border border-slate-200 rounded text-slate-700 text-sm font-mono overflow-x-auto leading-relaxed mb-12">
+          {result}
+        </pre>
+      )}
+
+      <article className="pt-10 border-t border-gray-100 text-gray-600 leading-relaxed text-sm">
+          <h3 className="text-xl font-bold text-gray-800 mb-4">온라인 JSON 포맷터의 활용</h3>
+          <p>복잡하게 엉킨 API 응답 데이터를 가독성 있게 정렬합니다. 2-space 들여쓰기를 표준으로 제공합니다.</p>
           <p className="mb-4">
             API 응답 결과가 한 줄로 뭉쳐있어 구조 파악이 어려울 때, 본 <strong>JSON 포맷터</strong>를 사용하면 가독성이 극대화됩니다. 자동 들여쓰기 기능을 통해 데이터의 계층 구조를 한눈에 확인하세요.
           </p>
@@ -44,7 +41,6 @@ export default function JsonFormatter() {
             Tip: 문법 오류가 있을 경우 경고창을 통해 잘못된 부분을 바로 확인할 수 있습니다.
           </div>
         </article>
-      </div>
     </div>
   );
 }

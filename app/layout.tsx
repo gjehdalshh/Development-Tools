@@ -2,39 +2,43 @@ import './globals.css';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'DevToolBox - 개발자를 위한 온라인 도구 모음',
-  description: '글자수 세기, Base64 변환, JSON 포맷터 등 개발과 작업에 필요한 도구를 무료로 사용하세요.',
+  title: 'DevToolBox | Professional Developer Utilities',
+  description: '개발자를 위한 정밀한 온라인 도구 모음입니다.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className="bg-gray-50/50 min-h-screen antialiased text-gray-900 font-sans">
-        <nav className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
-          <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <span className="p-2.5 rounded-2xl bg-indigo-600 text-white font-black text-xl shadow-indigo-100 shadow-lg group-hover:bg-indigo-700 transition-all">🛠️</span>
-              <span className="font-extrabold text-2xl text-gray-950 tracking-tighter">Dev<span className="text-indigo-600">ToolBox</span></span>
-            </Link>
-            <div className="hidden md:flex items-center gap-8 text-sm font-bold text-gray-500">
-              <Link href="/word-counter" className="hover:text-indigo-600 transition-colors">글자수 세기</Link>
-              <Link href="/base64" className="hover:text-indigo-600 transition-colors">Base64 변환</Link>
-              <Link href="/json-formatter" className="hover:text-emerald-600 transition-colors">JSON 포맷터</Link>
+      <body className="bg-white min-h-screen text-slate-900 antialiased font-sans">
+        <nav className="border-b border-slate-200 bg-white sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <Link href="/" className="flex items-center gap-2">
+                <span className="w-8 h-8 flex items-center justify-center rounded bg-slate-900 text-white font-bold text-sm">DT</span>
+                <span className="font-bold text-lg tracking-tight text-slate-900 uppercase">DevToolBox</span>
+              </Link>
+              <div className="hidden md:flex items-center gap-1">
+                <Link href="/word-counter" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-md transition-all">글자수 세기</Link>
+                <Link href="/base64" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-md transition-all">Base64 변환</Link>
+                <Link href="/json-formatter" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-md transition-all">JSON 포맷터</Link>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 text-xs font-mono text-slate-400">
+              v1.0.0 Stable
             </div>
           </div>
         </nav>
         
-        <main className="py-12 md:py-16 min-h-[calc(100vh-160px)]">{children}</main>
+        <main>{children}</main>
 
-        <footer className="border-t border-gray-100 bg-white py-12">
-          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="text-center md:text-left">
-              <p className="font-bold text-gray-900">DevToolBox</p>
-              <p className="mt-2 text-sm text-gray-500">모든 도구는 브라우저 내에서 안전하게 실행됩니다.</p>
+        <footer className="border-t border-slate-100 bg-slate-50 mt-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-slate-500 text-sm italic">
+              Built for Developers, by Developers.
             </div>
-            <div className="text-center md:text-right text-xs text-gray-400">
+            <div className="text-slate-400 text-xs text-center md:text-right leading-loose">
               <p>&copy; 2026 DevToolBox. All rights reserved.</p>
-              <p className="mt-1">개인정보를 수집하거나 서버에 데이터를 저장하지 않습니다.</p>
+              <p>No data is stored on our servers. 100% Client-side processing.</p>
             </div>
           </div>
         </footer>

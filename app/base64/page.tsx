@@ -6,34 +6,33 @@ export default function Base64Tool() {
   const [result, setResult] = useState('');
 
   const handleAction = (type: 'en' | 'de') => {
-    try {
-      setResult(type === 'en' ? btoa(input) : atob(input));
-    } catch {
-      alert('올바른 형식이 아닙니다. 입력을 확인하세요.');
-    }
+    try { setResult(type === 'en' ? btoa(input) : atob(input)); } catch { alert('Invalid input format.'); }
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6">
-      <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 md:p-12">
-        <h2 className="text-3xl font-black text-gray-950 tracking-tighter mb-8">🔗 Base64 인코더/디코더</h2>
-        
+    <div className="max-w-4xl mx-auto px-4 py-12">
+      <header className="mb-10">
+        <h2 className="text-2xl font-bold text-slate-900 tracking-tight uppercase">Base64 Converter</h2>
+        <p className="text-sm text-slate-400 font-medium mt-1">Encode or Decode data instantly</p>
+      </header>
+
+      <div className="space-y-6">
         <textarea
-          className="w-full h-40 p-6 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-400 outline-none font-mono mb-6 transition-all"
-          placeholder="변환할 텍스트를 입력하세요..."
+          className="w-full h-40 p-5 border border-slate-300 rounded focus:border-slate-900 outline-none font-mono text-sm bg-slate-50/30"
+          placeholder="데이터를 입력하세요..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
         
-        <div className="flex gap-4 mb-10">
-          <button onClick={() => handleAction('en')} className="flex-1 bg-indigo-600 text-white py-4 rounded-2xl font-black hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">인코딩</button>
-          <button onClick={() => handleAction('de')} className="flex-1 bg-gray-900 text-white py-4 rounded-2xl font-black hover:bg-gray-800 transition shadow-lg shadow-gray-200">디코딩</button>
+        <div className="flex -space-x-px">
+          <button onClick={() => handleAction('en')} className="flex-1 bg-slate-900 text-white py-3 font-bold text-xs uppercase tracking-widest hover:bg-slate-800 transition rounded-l">Encode</button>
+          <button onClick={() => handleAction('de')} className="flex-1 bg-white border border-slate-300 text-slate-900 py-3 font-bold text-xs uppercase tracking-widest hover:bg-slate-50 transition rounded-r">Decode</button>
         </div>
 
         {result && (
-          <div className="p-8 bg-gray-950 rounded-3xl border border-gray-800 relative group mb-12">
-            <div className="text-xs font-bold text-gray-500 mb-3 uppercase tracking-[0.2em]">Result</div>
-            <code className="text-indigo-400 break-all font-mono leading-relaxed">{result}</code>
+          <div className="p-6 bg-slate-900 rounded">
+            <div className="text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest">Output</div>
+            <code className="text-slate-100 text-sm break-all font-mono leading-relaxed">{result}</code>
           </div>
         )}
 
