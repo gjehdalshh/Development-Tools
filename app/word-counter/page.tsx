@@ -3,61 +3,43 @@ import { useState } from 'react';
 
 export default function WordCounter() {
   const [text, setText] = useState('');
-  const handleCopy = () => {
-    navigator.clipboard.writeText(text);
-    alert('전체 텍스트가 복사되었습니다! ✨');
-  };
-
   const charCount = text.length;
   const noSpaceCount = text.replace(/\s+/g, '').length;
 
   return (
-    <div className="max-w-5xl mx-auto px-6 animate-in fade-in duration-500">
-      <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-10">
-        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-          <div>
-            <h2 className="text-3xl font-black text-gray-950 tracking-tighter">✍️ 실시간 글자수 세기</h2>
-            <p className="text-gray-500 mt-1">자소서, 블로그 등 각종 플랫폼 분량 확인에 사용하세요.</p>
-          </div>
-          <button 
-            onClick={handleCopy} 
-            className="px-5 py-2.5 bg-gray-900 text-white rounded-xl font-bold text-sm hover:bg-gray-800 transition active:scale-95 shadow-lg shadow-gray-200"
-          >
-            결과 복사하기
-          </button>
-        </header>
-
-        {/* 입력창 디자인 개선 */}
-        <div className="relative mb-8">
-          <textarea
-            className="w-full h-80 p-6 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-400 outline-none text-lg leading-relaxed transition-all placeholder:text-gray-400"
-            placeholder="여기에 텍스트를 입력하거나 붙여넣으세요..."
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-          {text && (
-            <button onClick={() => setText('')} className="absolute right-4 top-4 text-xs text-gray-400 hover:text-red-500 font-medium">지우기</button>
-          )}
-        </div>
+    <div className="max-w-4xl mx-auto px-6">
+      <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 md:p-12">
+        <h2 className="text-3xl font-black text-gray-950 tracking-tighter mb-8">✍️ 실시간 글자수 세기</h2>
         
-        {/* 결과값 디자인 대폭 개선 */}
-        <div className="grid grid-cols-2 gap-6 bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
-          <div className="text-center bg-white p-5 rounded-xl border shadow-inner shadow-gray-50">
-            <div className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-1">공백 포함</div>
-            <div className="text-5xl font-black text-blue-600 tracking-tight">{charCount}</div>
-            <div className="text-sm text-gray-500 mt-1">자</div>
+        <textarea
+          className="w-full h-80 p-6 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-400 outline-none text-lg leading-relaxed mb-8 transition-all"
+          placeholder="여기에 내용을 입력하세요..."
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        
+        <div className="grid grid-cols-2 gap-6 mb-12">
+          <div className="bg-blue-50/50 p-8 rounded-3xl border border-blue-100 text-center">
+            <div className="text-sm font-bold text-blue-400 uppercase tracking-widest mb-2">공백 포함</div>
+            <div className="text-6xl font-black text-blue-600">{charCount}</div>
           </div>
-          <div className="text-center bg-white p-5 rounded-xl border shadow-inner shadow-gray-50">
-            <div className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-1">공백 제외</div>
-            <div className="text-5xl font-black text-blue-600 tracking-tight">{noSpaceCount}</div>
-            <div className="text-sm text-gray-500 mt-1">자</div>
+          <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100 text-center">
+            <div className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">공백 제외</div>
+            <div className="text-6xl font-black text-gray-900">{noSpaceCount}</div>
           </div>
         </div>
 
-        {/* 도움말 섹션 */}
-        <article className="mt-12 pt-8 border-t border-gray-100 text-gray-600 leading-relaxed">
-          <h3 className="font-bold text-gray-800 mb-2">언제 이 도구를 사용하나요?</h3>
-          <p className="text-sm">구글 애드센스 승인을 위한 블로그 포스팅 분량(약 1,000~2,000자)을 확인하거나, 네이버 글자수 제한이 있는 댓글, 각종 플랫폼의 상세 설명란을 작성할 때 사용합니다.</p>
+        {/* SEO 설명 영역 */}
+        <article className="pt-10 border-t border-gray-100 text-gray-600 leading-relaxed text-sm md:text-base">
+          <h3 className="text-xl font-bold text-gray-800 mb-4">온라인 글자수 세기가 필요한 이유</h3>
+          <p className="mb-4">
+            자기소개서나 블로그 포스팅, SNS 게시물 작성 시 <strong>글자수 제한</strong>은 매우 중요한 요소입니다. 본 도구는 별도의 설치 없이 브라우저에서 <strong>실시간 글자수 계산</strong>을 도와줍니다.
+          </p>
+          <ul className="list-disc ml-5 space-y-2">
+            <li><strong>네이버/티스토리 블로그:</strong> SEO를 위한 최적의 포스팅 분량 확인</li>
+            <li><strong>대입/취업 자소서:</strong> 기업별 제한 글자수 정밀 체크</li>
+            <li><strong>SNS 마케팅:</strong> 인스타그램, 트위터 글자수 제한 최적화</li>
+          </ul>
         </article>
       </div>
     </div>

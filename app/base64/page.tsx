@@ -5,47 +5,47 @@ export default function Base64Tool() {
   const [input, setInput] = useState('');
   const [result, setResult] = useState('');
 
-  const encode = () => { try { setResult(btoa(input)); } catch { alert('변환 불가한 문자열입니다. (ASCII만 지원)'); } };
-  const decode = () => { try { setResult(atob(input)); } catch { alert('올바른 Base64 형식이 아닙니다.'); } };
+  const handleAction = (type: 'en' | 'de') => {
+    try {
+      setResult(type === 'en' ? btoa(input) : atob(input));
+    } catch {
+      alert('올바른 형식이 아닙니다. 입력을 확인하세요.');
+    }
+  };
 
   return (
-    <div className="max-w-5xl mx-auto px-6 animate-in fade-in duration-500">
-      <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-10">
-        <header className="mb-8">
-          <h2 className="text-3xl font-black text-gray-950 tracking-tighter">🔗 Base64 인코더 / 디코더</h2>
-          <p className="text-gray-500 mt-1">텍스트를 안전한 전송 형식으로 인코딩하거나 복원하세요.</p>
-        </header>
-
+    <div className="max-w-4xl mx-auto px-6">
+      <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 md:p-12">
+        <h2 className="text-3xl font-black text-gray-950 tracking-tighter mb-8">🔗 Base64 인코더/디코더</h2>
+        
         <textarea
-          className="w-full h-40 p-5 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-400 outline-none font-mono text-base transition-all mb-5"
-          placeholder="변환할 문자열을 입력하세요..."
+          className="w-full h-40 p-6 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-400 outline-none font-mono mb-6 transition-all"
+          placeholder="변환할 텍스트를 입력하세요..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
         
-        {/* 버튼 디자인 업그레이드 */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-8 pb-8 border-b border-gray-100">
-          <button onClick={encode} className="flex-1 bg-indigo-600 text-white py-3.5 rounded-xl font-bold hover:bg-indigo-700 transition active:scale-95 shadow-lg shadow-indigo-100">
-            인코딩 (TEXT → B64)
-          </button>
-          <button onClick={decode} className="flex-1 bg-gray-900 text-white py-3.5 rounded-xl font-bold hover:bg-gray-800 transition active:scale-95 shadow-lg shadow-gray-200">
-            디코딩 (B64 → TEXT)
-          </button>
+        <div className="flex gap-4 mb-10">
+          <button onClick={() => handleAction('en')} className="flex-1 bg-indigo-600 text-white py-4 rounded-2xl font-black hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">인코딩</button>
+          <button onClick={() => handleAction('de')} className="flex-1 bg-gray-900 text-white py-4 rounded-2xl font-black hover:bg-gray-800 transition shadow-lg shadow-gray-200">디코딩</button>
         </div>
 
-        {/* 결과 박스 디자인 대폭 개선 */}
         {result && (
-          <div className="p-6 bg-gray-900 rounded-2xl border border-gray-800 relative group animate-in slide-in-from-top-3 duration-300">
-            <button 
-              onClick={() => navigator.clipboard.writeText(result)} 
-              className="absolute right-3 top-3 bg-white/10 text-white px-3 py-1.5 rounded-md text-xs font-bold hover:bg-white/20 transition opacity-0 group-hover:opacity-100"
-            >
-              결과 복사
-            </button>
-            <div className="text-xs font-bold text-gray-400 mb-2 uppercase tracking-widest">변환 결과</div>
-            <code className="text-sm text-gray-100 break-all leading-relaxed font-mono">{result}</code>
+          <div className="p-8 bg-gray-950 rounded-3xl border border-gray-800 relative group mb-12">
+            <div className="text-xs font-bold text-gray-500 mb-3 uppercase tracking-[0.2em]">Result</div>
+            <code className="text-indigo-400 break-all font-mono leading-relaxed">{result}</code>
           </div>
         )}
+
+        <article className="pt-10 border-t border-gray-100 text-gray-600 leading-relaxed text-sm">
+          <h3 className="text-xl font-bold text-gray-800 mb-4">Base64 변환기 활용 가이드</h3>
+          <p className="mb-4">
+            <strong>Base64 인코딩</strong>은 8비트 이진 데이터를 텍스트 시스템에서 안전하게 전송하기 위해 ASCII 문자열로 변환하는 방식입니다. 주로 웹 개발에서 이미지 데이터 URI 생성, API 인증 토큰 처리 등에 사용됩니다.
+          </p>
+          <p>
+            본 도구는 데이터 유출 걱정 없이 브라우저 내에서 안전하게 작동하므로 보안이 중요한 문자열 변환에도 안심하고 사용할 수 있습니다.
+          </p>
+        </article>
       </div>
     </div>
   );
