@@ -1,11 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "Base64 인코더/디코더 - Dev Toolbox",
-  description: "텍스트를 Base64 형식으로 변환하거나, Base64 문자열을 원문으로 복구하는 도구입니다. 빠르고 안전한 온라인 변환기입니다.",
-};
 
 export default function Base64Tool() {
   const [input, setInput] = useState('');

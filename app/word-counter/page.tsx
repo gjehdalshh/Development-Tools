@@ -1,11 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "글자수 세기 - Dev Toolbox",
-  description: "공백 포함/제외 글자수와 단어 수를 실시간으로 계산해주는 무료 온라인 도구입니다. 자기소개서나 레포트 작성 시 유용합니다.",
-};
 
 export default function WordCounter() {
   const [text, setText] = useState('');
