@@ -1,9 +1,18 @@
 import './globals.css';
+import type { Metadata } from "next";
 import Link from 'next/link';
 
-export const metadata = {
-  title: 'DevToolBox | Professional Developer Utilities',
-  description: '개발자를 위한 정밀한 온라인 도구 모음입니다.',
+
+export const metadata: Metadata = {
+  title: "Dev Toolbox",
+  description: "개발자를 위한 유용한 도구 모음",
+  verification: {
+    // 여기에 복사한 코드의 content 부분만 넣으세요
+    google: "구글코드", 
+    other: {
+      "naver-site-verification": "b5730e361190fb13b33f46e4dedb848516feb1c7",
+    },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
